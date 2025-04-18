@@ -1,0 +1,201 @@
+.community-container {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.community-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.community-main {
+    flex-grow: 1;
+}
+
+.sidebar-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sidebar-section h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.topic-list li {
+    margin-bottom: 0.8rem;
+}
+
+.topic-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.topic-list a:hover {
+    color: #4CAF50;
+}
+
+.topic-list i {
+    color: #ff6b6b;
+}
+
+.teacher-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.teacher-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.teacher-list li:last-child {
+    border-bottom: none;
+}
+
+.teacher-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.teacher-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.teacher-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.teacher-school {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.post-form {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.post-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.post-time {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.post-content h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.post-content p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.post-actions .btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.post-actions .btn i {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .community-container {
+        flex-direction: column;
+    }
+
+    .community-sidebar {
+        width: 100%;
+    }
+
+    .post-actions {
+        flex-wrap: wrap;
+    }
+
+    .post-actions .btn {
+        flex: 1;
+        justify-content: center;
+    }
+} 
