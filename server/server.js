@@ -6,6 +6,10 @@ const dotenv = require('dotenv');
 // Load environment variables
 dotenv.config();
 
+// Import routes
+const userRoutes = require('./routes/userRoutes');
+const resourceRoutes = require('./routes/resourceRoutes');
+
 // Create Express app
 const app = express();
 
@@ -19,9 +23,14 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Basic route
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the Resource Center API' });
+// Routes
+app.use('/api/users', userRoutes);
+app.use('/api/resources', resourceRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: '服务器内部错误' });
 });
 
 // Start server
