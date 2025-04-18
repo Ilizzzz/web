@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源上传 - 小学科学教育资源中心</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .upload-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: #4CAF50;
+        }
+        
+        .file-upload i {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        
+        .file-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-info i {
+            font-size: 1.5rem;
+        }
+        
+        .btn-upload {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .btn-upload:hover {
+            background: #45a049;
+        }
+        
+        .upload-status {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .upload-status.success {
+            background: #dff0d8;
+            color: #3c763d;
+            display: block;
+        }
+        
+        .upload-status.error {
+            background: #f2dede;
+            color: #a94442;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" 
+                     alt="科兴南粤logo" 
+                     class="site-logo"
+                     width="262">
+            </a>
+            <div class="title-group">
+                <h1>科兴南粤——小学科学教育资源中心</h1>
+                <p class="subtitle">基于新课标13个核心概念和4个跨学科概念的科学教育资源平台</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="core-concepts/concept1.html">核心概念</a></li>
+                <li><a href="premium-resources/interdisciplinary.html">精品资源</a></li>
+                <li><a href="upload.html" class="active">资源上传</a></li>
+                <li><a href="#">教师社区</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">首页</a> &gt; 
+            <span>资源上传</span>
+        </div>
+        
+        <div class="upload-container">
+            <h2>上传教学资源</h2>
+            <form class="upload-form" id="uploadForm">
+                <div class="form-group">
+                    <label for="resourceTitle">资源标题</label>
+                    <input type="text" id="resourceTitle" name="resourceTitle" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resourceType">资源类型</label>
+                    <select id="resourceType" name="resourceType" required>
+                        <option value="">请选择资源类型</option>
+                        <option value="video">视频资源</option>
+                        <option value="document">文档资源</option>
+                        <option value="presentation">课件资源</option>
+                        <option value="image">图片资源</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gradeLevel">适用年级</label>
+                    <select id="gradeLevel" name="gradeLevel" required>
+                        <option value="">请选择适用年级</option>
+                        <option value="1-2">1-2年级</option>
+                        <option value="3-4">3-4年级</option>
+                        <option value="5-6">5-6年级</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="concept">相关核心概念</label>
+                    <select id="concept" name="concept" required>
+                        <option value="">请选择相关核心概念</option>
+                        <option value="concept1">物质的结构与性质</option>
+                        <option value="concept2">物质的变化与化学反应</option>
+                        <option value="concept3">物质的运动与相互作用</option>
+                        <option value="concept4">能的转化与能量守恒</option>
+                        <option value="concept5">生命系统的构成层次</option>
+                        <option value="concept6">生物体的稳态与调节</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resourceDescription">资源描述</label>
+                    <textarea id="resourceDescription" name="resourceDescription" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>上传文件</label>
+                    <div class="file-upload" id="dropZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>点击或拖拽文件到此处上传</p>
+                        <input type="file" id="fileInput" style="display: none" multiple>
+                    </div>
+                    <div class="file-preview" id="filePreview"></div>
+                </div>
+                
+                <button type="submit" class="btn-upload">上传资源</button>
+                <div class="upload-status" id="uploadStatus"></div>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>资源分类</h4>
+                    <ul>
+                        <li><a href="core-concepts/concept1.html">核心概念资源</a></li>
+                        <li><a href="premium-resources/interdisciplinary.html">精品课程资源</a></li>
+                        <li><a href="#">最新资源</a></li>
+                        <li><a href="#">热门资源</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>教师服务</h4>
+                    <ul>
+                        <li><a href="upload.html">资源上传</a></li>
+                        <li><a href="#">教学讨论</a></li>
+                        <li><a href="#">教学工具</a></li>
+                        <li><a href="#">培训活动</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">项目介绍</a></li>
+                        <li><a href="#">团队介绍</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>联系我们</h4>
+                    <p><i class="fas fa-envelope"></i> info@science-edu.org</p>
+                    <p><i class="fas fa-phone"></i> 400-123-4567</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 小学科学教育资源中心 | 为科学教育提供优质资源</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const filePreview = document.getElementById('filePreview');
+            const uploadForm = document.getElementById('uploadForm');
+            const uploadStatus = document.getElementById('uploadStatus');
+            
+            // 点击上传区域触发文件选择
+            dropZone.addEventListener('click', () => fileInput.click());
+            
+            // 处理拖拽事件
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#4CAF50';
+            });
+            
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.style.borderColor = '#ddd';
+            });
+            
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#ddd';
+                const files = e.dataTransfer.files;
+                handleFiles(files);
+            });
+            
+            // 处理文件选择
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+            
+            // 处理文件预览
+            function handleFiles(files) {
+                filePreview.innerHTML = '';
+                
+                Array.from(files).forEach(file => {
+                    const fileInfo = document.createElement('div');
+                    fileInfo.className = 'file-info';
+                    
+                    // 根据文件类型选择图标
+                    let iconClass = 'fas fa-file';
+                    if (file.type.startsWith('video/')) {
+                        iconClass = 'fas fa-video';
+                    } else if (file.type.startsWith('image/')) {
+                        iconClass = 'fas fa-image';
+                    } else if (file.type === 'application/pdf') {
+                        iconClass = 'fas fa-file-pdf';
+                    } else if (file.type === 'application/msword' || 
+                             file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                        iconClass = 'fas fa-file-word';
+                    } else if (file.type === 'application/vnd.ms-powerpoint' || 
+                             file.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') {
+                        iconClass = 'fas fa-file-powerpoint';
+                    }
+                    
+                    fileInfo.innerHTML = `
+                        <i class="${iconClass}"></i>
+                        <span>${file.name} (${formatFileSize(file.size)})</span>
+                    `;
+                    filePreview.appendChild(fileInfo);
+                });
+            }
+            
+            // 格式化文件大小
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // 处理表单提交
+            uploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData();
+                const files = fileInput.files;
+                
+                if (files.length === 0) {
+                    showStatus('请选择要上传的文件', 'error');
+                    return;
+                }
+                
+                // 添加表单数据
+                formData.append('title', document.getElementById('resourceTitle').value);
+                formData.append('type', document.getElementById('resourceType').value);
+                formData.append('grade', document.getElementById('gradeLevel').value);
+                formData.append('concept', document.getElementById('concept').value);
+                formData.append('description', document.getElementById('resourceDescription').value);
+                
+                // 添加文件
+                Array.from(files).forEach(file => {
+                    formData.append('files', file);
+                });
+                
+                try {
+                    // 这里替换为实际的上传API地址
+                    const response = await fetch('/api/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (response.ok) {
+                        showStatus('资源上传成功！', 'success');
+                        uploadForm.reset();
+                        filePreview.innerHTML = '';
+                    } else {
+                        throw new Error('上传失败');
+                    }
+                } catch (error) {
+                    showStatus('上传失败，请重试', 'error');
+                }
+            });
+            
+            // 显示上传状态
+            function showStatus(message, type) {
+                uploadStatus.textContent = message;
+                uploadStatus.className = `upload-status ${type}`;
+                setTimeout(() => {
+                    uploadStatus.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html> 
